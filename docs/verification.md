@@ -19,11 +19,17 @@ No test is skipped. The CI matrix runs the same locked package and gate on Node 
 
 ## Current receipts
 
-- Implementation commit: `629ab4ae641806df263eaaefd57831eab7cdff35`.
-- Public CI: [run 32147816184](https://github.com/estelledc/system-design-05-consistent-hashing/actions/runs/32147816184).
+- Implementation commit: `10f460fb3b82a92268834d5d1c69a6530b7744e1` (identity-safe rewrite of `629ab4ae641806df263eaaefd57831eab7cdff35`).
+- Historical public CI before the author-metadata rewrite: [run 32147816184](https://github.com/estelledc/system-design-05-consistent-hashing/actions/runs/32147816184). Its tested tree is identical to the rewritten implementation commit, but the run remains bound to the old commit object.
 - The run completed successfully on Node 22.23.2, 24.19.0, and 26.7.0. Each job reported 23 passed, 0 failed, 0 skipped, and 0 high-or-greater npm vulnerabilities.
 - All three runtime smokes produced fingerprint `bacd206392f1e2ce947877b560e6b5ea73c4ab99a01578e9f6b20611b395fb4a` for the same ring, mapped the same key to `cache-c, cache-a`, and observed 19.585% consistent-hash movement versus 80.04% modulo movement over the declared 20,000-key addition sample, with zero unexpected destinations.
 - Local full gates also passed on Node 22.23.1 and 26.6.0. Those local versions and timings are supporting evidence; the linked GitHub run is the remote publication receipt.
+
+## Identity-safe main receipt
+
+- Reachable `main` history was rewritten to use the repository owner's GitHub noreply identity. Every existing tree, commit message, author date, and committer date was preserved; only author and committer identity metadata changed.
+- Rewritten baseline: `c7e37e584302134a531b1729ab02737ec756256f`.
+- Public CI: [run 32223639343](https://github.com/estelledc/system-design-05-consistent-hashing/actions/runs/32223639343), successful on Node 22, 24, and 26 with the full quality gate.
 
 The movement percentages are fixtures for hash version, membership, virtual-node count, seed, and generated corpus. They are not predictions for a production dataset.
 
